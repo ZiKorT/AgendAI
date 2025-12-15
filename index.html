@@ -61,8 +61,13 @@
             justify-content: center;
         }
         
-        /* Message d'erreur vidéo stylisé (si pas chargée) */
-        video:active { outline: none; }
+        /* BLOQUER L'INTERACTION UTILISATEUR AVEC LA VIDÉO */
+        video {
+            pointer-events: none; /* Empêche clic droit, pause, etc. */
+        }
+        /* Masquer les contrôles natifs au cas où */
+        video::-webkit-media-controls { display:none !important; }
+        video::-webkit-media-controls-enclosure { display:none !important; }
         
         /* Badge tech */
         .tech-badge {
@@ -93,7 +98,6 @@
             <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
                 <a href="#demo" class="hover:text-indigo-600 transition-colors">Démonstration</a>
                 <a href="#architecture" class="hover:text-indigo-600 transition-colors">Architecture</a>
-                <a href="#code" class="hover:text-indigo-600 transition-colors">Code Source</a>
             </nav>
             <a href="https://github.com/robinn24/Hackathon/tree/feature/launcher-automatique" target="_blank" class="text-slate-400 hover:text-slate-800 transition-colors">
                 <i class="fa-brands fa-github text-xl"></i>
@@ -135,7 +139,7 @@
                 
                 <!-- Video Container -->
                 <div class="video-container aspect-video bg-slate-900 relative group">
-                    <video class="w-full h-full object-cover" controls muted loop playsinline poster="https://via.placeholder.com/1280x720/0f172a/ffffff?text=Demo+Video+Loading...">
+                    <video class="w-full h-full object-cover" autoplay muted loop playsinline poster="https://via.placeholder.com/1280x720/0f172a/ffffff?text=Demo+Video+Loading...">
                         <source src="team_9.mp4" type="video/mp4">
                         <div class="absolute inset-0 flex items-center justify-center text-white">
                             <div class="text-center">
